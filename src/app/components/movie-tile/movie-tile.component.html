@@ -1,0 +1,10 @@
+<div class="card" *ngIf="movie">
+    <div class="card-header">
+        <h1 class="card-title">{{movie.title}}</h1>
+        <p class="card-text">{{movie.release_date}}</p>
+    </div>
+    <div class="card-body">
+        <h3 class="card-title" *ngIf="movie.tagline">{{movie.tagline}}</h3>
+        <p class="card-text">{{movie.overview}}</p>
+    </div>
+</div>

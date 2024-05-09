@@ -2,12 +2,12 @@ import { Component, OnDestroy, Renderer2, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MoviePageComponent } from './components/movie-page/movie-page.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MoviePageComponent, NgbModule],
+  imports: [RouterOutlet, MovieListComponent, NgbModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

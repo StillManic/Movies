@@ -1,1 +1,2 @@
 GET https://api.themoviedb.org/3/movie/11?api_key=143727b61537517619f8325c517d1435
+# GET https://api.themoviedb.org/3/discover/movie?api_key=143727b61537517619f8325c517d1435&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3
