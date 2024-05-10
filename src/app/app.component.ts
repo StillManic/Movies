@@ -1,5 +1,5 @@
 import { Component, OnDestroy, Renderer2, OnInit, afterRender } from '@angular/core';
-import { RouterOutlet, RouterLink, NavigationEnd } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MovieListComponent } from './components/movie-list/movie-list.component';

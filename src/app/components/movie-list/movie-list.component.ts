@@ -6,10 +6,12 @@ import { Movie } from '../../models/movie';
 import { MoviePage } from '../../models/movie-page';
 import { MovieServiceService } from '../../services/movie-service.service';
 
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [NgFor, MovieTileComponent],
+  imports: [NgFor, MovieTileComponent, RouterLink, RouterLinkActive],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })

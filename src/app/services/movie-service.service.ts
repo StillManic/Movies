@@ -11,6 +11,7 @@ import { MoviePage } from '../models/movie-page';
 })
 export class MovieServiceService {
   baseUrl: string = 'https://api.themoviedb.org/3';
+  imageUrl: string = 'https://image.tmdb.org/t/p/';
   singleMovie: string = '/movie/';
   pageOfMovies: string = '/discover/movie';
 
@@ -21,7 +22,7 @@ export class MovieServiceService {
 
   constructor(private client: HttpClient) { }
 
-  getMovie(id: number): Observable<Movie> {
+  getMovie(id: string): Observable<Movie> {
     let url: string = this.baseUrl + this.singleMovie + id + '?' + this.apiKey;
     return this.client.get<Movie>(url);
   }
@@ -30,5 +31,9 @@ export class MovieServiceService {
     if (!pageNumber) pageNumber = 1;
     let url: string = this.baseUrl + this.pageOfMovies + '?' + this.apiKey + '&' + `include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${pageNumber}&sort_by=popularity.desc&with_release_type=2|3`;
     return this.client.get<MoviePage>(url);
+  }
+
+  getImageURL(path: string, size: string): string {
+    return this.imageUrl + size + path;
   }
 }

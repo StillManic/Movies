@@ -1,1 +1,34 @@
-<p>I'm a Page</p>
+<div *ngIf="movie$ | async as movie">
+    <br>
+
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <h2>{{movie.title}}</h2>
+        </div>
+        <div class="col">
+            <label for="released">Released:</label>
+            <span id="released"> {{movie.release_date}}</span>
+        </div>
+    </div>
+
+    <h4 *ngIf="movie.tagline">
+        <span class="fst-italic fw-normal">{{movie.tagline}}</span>
+    </h4>
+    
+    <br>
+
+    <div class="clearfix">
+        <img [src]="imageUrl" alt="Poster Image" class="col-3 px-3 float-sm-end sm-3 ms-sm-d">
+
+        <label for="genres">Genres</label>
+        <ul id="genres" class="list-group">
+            <li class="list-group-item" *ngFor="let genre of movie.genres">
+                {{genre.name}}
+            </li>
+        </ul>
+
+        <br>
+
+        <p>{{movie.overview}}</p>
+    </div>
+</div>
