@@ -1,5 +1,5 @@
-import { Component, OnDestroy, Renderer2, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnDestroy, Renderer2, OnInit, afterRender } from '@angular/core';
+import { RouterOutlet, RouterLink, NavigationEnd } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MovieListComponent } from './components/movie-list/movie-list.component';
@@ -7,7 +7,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MovieListComponent, NgbModule],
+  imports: [RouterOutlet, RouterLink, MovieListComponent, NgbModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,7 +16,12 @@ export class AppComponent {
   
   theme: string = 'dark';
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {
+    afterRender(() => {
+      this.theme = 'dark';
+      this.renderer.addClass(document.body, 'dark');
+    });
+  }
 
   switchTheme(): void {
     if (this.theme === 'dark') {
@@ -28,10 +33,5 @@ export class AppComponent {
       this.renderer.removeClass(document.body, 'light');
       this.renderer.addClass(document.body, 'dark');
     }
-  }
-
-  ngOnInit(): void {
-    this.theme = "dark";
-    this.renderer.addClass(document.body, 'dark');
   }
 }
