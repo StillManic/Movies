@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-
 import { Movie } from '../models/movie';
 import { MoviePage } from '../models/movie-page';
+import { Credits } from '../models/credits';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class MovieServiceService {
   imageUrl: string = 'https://image.tmdb.org/t/p/';
   singleMovie: string = '/movie/';
   pageOfMovies: string = '/discover/movie';
+  credits: string = '/credits'
 
   apiKey: string = 'api_key=143727b61537517619f8325c517d1435';
 
@@ -35,5 +36,10 @@ export class MovieServiceService {
 
   getImageURL(path: string, size: string): string {
     return this.imageUrl + size + path;
+  }
+
+  getCredits(movieId: string): Observable<Credits> {
+    let url: string = this.baseUrl + this.singleMovie + movieId + this.credits + '?' + this.apiKey;
+    return this.client.get<Credits>(url);
   }
 }

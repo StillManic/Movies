@@ -1,34 +1,65 @@
-<div *ngIf="movie$ | async as movie">
-    <br>
-
-    <div class="row align-items-center">
-        <div class="col-auto">
-            <h2>{{movie.title}}</h2>
-        </div>
-        <div class="col">
-            <label for="released">Released:</label>
-            <span id="released"> {{movie.release_date}}</span>
-        </div>
-    </div>
-
-    <h4 *ngIf="movie.tagline">
-        <span class="fst-italic fw-normal">{{movie.tagline}}</span>
-    </h4>
-    
-    <br>
-
+<div *ngIf="movie$ | async as movie" class="bg-body py-0 my-0 h-100">
     <div class="clearfix">
         <img [src]="imageUrl" alt="Poster Image" class="col-3 px-3 float-sm-end sm-3 ms-sm-d">
 
-        <label for="genres">Genres</label>
-        <ul id="genres" class="list-group">
-            <li class="list-group-item" *ngFor="let genre of movie.genres">
-                {{genre.name}}
-            </li>
-        </ul>
+        <br>
+
+        <div class="row align-items-center">
+            <div class="col-auto text-secondary-emphasis">
+                <h2>{{movie.title}}</h2>
+            </div>
+            <div class="col text-secondary">
+                <label for="released">Released:</label>
+                <span id="released"> {{movie.release_date}}</span>
+            </div>
+        </div>
+
+        <div class="row text-secondary-emphasis" *ngIf="movie.tagline">
+            <span class="fst-italic fw-normal h4">{{movie.tagline}}</span>
+        </div>
+        
+        <br>
+
+        <div class="row text-secondary">
+            <span class="fw-normal p">{{movie.overview}}</span>
+        </div>
 
         <br>
 
-        <p>{{movie.overview}}</p>
+        <div class="row text-secondary-emphasis mx-1">
+            <label for="genres">Genres</label>
+            <ul id="genres" class="list-group">
+                <li class="col-2 list-group-item" *ngFor="let genre of movie.genres">
+                    {{genre.name}}
+                </li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="row text-secondary-emphasis mx-1">
+            <label for="companies">Production Companies</label>
+            <ul id="companies" class="list-group">
+                <li class="col-3 list-group-item" *ngFor="let company of movie.production_companies">
+                    {{company.name}}
+                </li>
+            </ul>
+        </div>
+
+        <br>
+        
+        <div class="row text-secondary-emphasis mx-1 overflow-x-scroll" *ngIf="credits | async as credits">
+            <label for="credits">Credits</label>
+            <!-- <div class="hstack gap-3">
+                <div *ngFor="let credit of credits.cast">
+                    <app-person-tile [credit]="credit"></app-person-tile>
+                </div>
+            </div> -->
+            <ul id="credits" class="list-group list-group-horizontal">
+                <li class="col-2 list-group-item" *ngFor="let credit of credits.cast">
+                    <app-person-tile [credit]="credit"></app-person-tile>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -1,0 +1,8 @@
+<div class="card" *ngIf="credit">
+    <img [src]="imageUrl" alt="Mug Shot" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">{{credit.name}}</h5>
+        <label for="role">Role:</label>
+        <span class="card-text fst-italic"> {{credit.character}}</span>
+    </div>
+</div>
