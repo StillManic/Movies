@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie';
 import { MoviePage } from '../models/movie-page';
 import { Credits } from '../models/credits';
+import { Logo } from '../models/logo';
+import { LogoResponse } from '../models/logo-response';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,10 @@ export class MovieServiceService {
   baseUrl: string = 'https://api.themoviedb.org/3';
   imageUrl: string = 'https://image.tmdb.org/t/p/';
   singleMovie: string = '/movie/';
+  company: string = '/company/';
   pageOfMovies: string = '/discover/movie';
-  credits: string = '/credits'
+  credits: string = '/credits';
+  images: string = '/images';
 
   apiKey: string = 'api_key=143727b61537517619f8325c517d1435';
 
@@ -28,8 +32,8 @@ export class MovieServiceService {
     return this.client.get<Movie>(url);
   }
 
-  getPopularMovies(pageNumber?: number): Observable<MoviePage> {
-    if (!pageNumber) pageNumber = 1;
+  getPopularMovies(pageNumber?: string): Observable<MoviePage> {
+    if (!pageNumber) pageNumber = '' + 1;
     let url: string = this.baseUrl + this.pageOfMovies + '?' + this.apiKey + '&' + `include_adult=${this.include_adult}&include_video=${this.include_video}&language=en-US&page=${pageNumber}&sort_by=popularity.desc&with_release_type=2|3`;
     return this.client.get<MoviePage>(url);
   }
@@ -42,4 +46,16 @@ export class MovieServiceService {
     let url: string = this.baseUrl + this.singleMovie + movieId + this.credits + '?' + this.apiKey;
     return this.client.get<Credits>(url);
   }
+
+  getCompanyLogos(companyId: number): Observable<LogoResponse> {
+    let url: string = this.baseUrl + this.company + companyId + this.images + '?' + this.apiKey;
+    return this.client.get<LogoResponse>(url);
+  }
+
+  // getCompanyLogo(companyId: number): Logo {
+  //   let url: string = this.baseUrl + this.company + companyId + this.images + '?' + this.apiKey;
+  //   let logos: Logo[] = [];
+  //   this.client.get<Logo[]>(url).subscribe(arr => logos = arr);
+  //   return logos.filter(logo => logo.file_type === '.svg')[0];
+  // }
 }

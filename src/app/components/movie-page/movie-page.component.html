@@ -26,14 +26,22 @@
 
         <br>
 
-        <div class="row text-secondary-emphasis mx-1">
+        <div class="row text-secondary-emphasis">
+            <label for="genres">Genres</label>
+            <div class="hstack gap-3">
+                <div class="rounded-pill text-bg-secondary px-2 py-1" *ngFor="let genre of movie.genres">
+                    {{genre.name}}
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row text-secondary-emphasis mx-1">
             <label for="genres">Genres</label>
             <ul id="genres" class="list-group">
                 <li class="col-2 list-group-item" *ngFor="let genre of movie.genres">
                     {{genre.name}}
                 </li>
             </ul>
-        </div>
+        </div> -->
 
         <br>
 
@@ -41,7 +49,8 @@
             <label for="companies">Production Companies</label>
             <ul id="companies" class="list-group">
                 <li class="col-3 list-group-item" *ngFor="let company of movie.production_companies">
-                    {{company.name}}
+                    <!-- <img [src]="service.getCompanyLogoUrl(company.id)" alt=""> {{company.name}} -->
+                    <app-company-list-item [company]="company"></app-company-list-item>
                 </li>
             </ul>
         </div>

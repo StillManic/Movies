@@ -1,30 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 import { MovieTileComponent } from '../movie-tile/movie-tile.component';
 import { Movie } from '../../models/movie';
 import { MoviePage } from '../../models/movie-page';
 import { MovieServiceService } from '../../services/movie-service.service';
+import { Observable, switchMap } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [NgFor, MovieTileComponent, RouterLink, RouterLinkActive],
+  imports: [NgFor, NgIf, MovieTileComponent, RouterLink, RouterLinkActive],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
 export class MovieListComponent {
-  movies: Movie[] = []
+  page?: MoviePage;
 
-  constructor(private service: MovieServiceService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private service: MovieServiceService) {}
 
-  getPopularMovies(): void {
-    this.service.getPopularMovies(1).subscribe(page => this.movies = page.results);
+  getPopularMovies(id?: string): void {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.service.getPopularMovies(params.get('id')! ? params.get('id')! : id))
+    ).subscribe(page => this.page = page);
+  }
+
+  getPage(id: string) {
+    this.getPopularMovies(id);
   }
 
   ngOnInit(): void {
-    this.getPopularMovies();
+    this.getPage('1');
+  }
+
+  getPreviousPage() {
+    if (this.page) {
+      if (this.page.page > 1) {
+        this.getPopularMovies('' + (this.page.page - 1));
+      }
+    }
+  }
+
+  getNextPage() {
+    if (this.page) {
+      if (this.page.page < this.page.total_pages) {
+        this.getPopularMovies('' + (this.page.page + 1));
+      }
+    }
   }
 }
