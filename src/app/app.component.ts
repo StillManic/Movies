@@ -4,11 +4,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { NavComponent } from './components/nav/nav.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MovieListComponent, NavComponent, NgbModule],
+  imports: [RouterOutlet, RouterLink, MovieListComponent, NavComponent, NgbModule, PaginatorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

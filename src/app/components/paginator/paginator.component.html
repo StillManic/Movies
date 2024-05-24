@@ -1,0 +1,20 @@
+<nav class="container-fluid justify-content-center">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="!hasPreviousPage()">
+            <button class="page-link" (click)="gotoPreviousPage()">
+                <fa-icon [icon]="faCaretLeft"></fa-icon>
+            </button>
+        </li>
+        <li class="page-item" *ngFor="let pageNumber of pageNumbers">
+            <!-- <ng-container *ngIf="[pageNumber <= 5]"> -->
+                <!-- <button class="page-link" (click)="switchToPage(pageNumber)" [attr.buttonId]="pageNumber" #ref [class.active]="isTagActive(ref)">{{pageNumber}}</button> -->
+                <button class="page-link pageButton" (click)="switchToPage(pageNumber)" [attr.buttonId]="pageNumber">{{pageNumber}}</button>
+            <!-- </ng-container> -->
+        </li>
+        <li class="page-item" [class.disabled]="!hasNextPage()">
+            <button class="page-link" (click)="gotoNextPage()">
+                <fa-icon [icon]="faCaretRight"></fa-icon>
+            </button>
+        </li>
+    </ul>
+</nav>

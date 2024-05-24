@@ -1,3 +1,8 @@
 .list-group-item {
     border: none;
 }
+
+.navbar {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}

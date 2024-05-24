@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
 import { MovieTileComponent } from '../movie-tile/movie-tile.component';
-import { Movie } from '../../models/movie';
 import { MoviePage } from '../../models/movie-page';
+import { PaginatorComponent } from '../paginator/paginator.component';
 import { MovieServiceService } from '../../services/movie-service.service';
-import { Observable, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [NgFor, NgIf, MovieTileComponent, RouterLink, RouterLinkActive],
+  imports: [NgFor, NgIf, MovieTileComponent, PaginatorComponent, RouterLink, RouterLinkActive],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })

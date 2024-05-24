@@ -51,11 +51,4 @@ export class MovieServiceService {
     let url: string = this.baseUrl + this.company + companyId + this.images + '?' + this.apiKey;
     return this.client.get<LogoResponse>(url);
   }
-
-  // getCompanyLogo(companyId: number): Logo {
-  //   let url: string = this.baseUrl + this.company + companyId + this.images + '?' + this.apiKey;
-  //   let logos: Logo[] = [];
-  //   this.client.get<Logo[]>(url).subscribe(arr => logos = arr);
-  //   return logos.filter(logo => logo.file_type === '.svg')[0];
-  // }
 }

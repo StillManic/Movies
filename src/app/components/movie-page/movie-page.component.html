@@ -4,6 +4,14 @@
 
         <br>
 
+        <div class="row mb-2">
+            <div class="col-2">
+                <button class="btn btn-secondary" (click)="goBackToList()">
+                    <fa-icon [icon]="faCaretLeft"></fa-icon> Back
+                </button>
+            </div>
+        </div>
+
         <div class="row align-items-center">
             <div class="col-auto text-secondary-emphasis">
                 <h2>{{movie.title}}</h2>
