@@ -9,3 +9,7 @@ body.light {
     background-color: var(--bs-light);
     color: var(--bs-dark);
 }
+
+/* div {
+    border: 1px solid pink;
+} */

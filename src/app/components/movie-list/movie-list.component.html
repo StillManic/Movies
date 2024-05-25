@@ -1,7 +1,7 @@
 <div class="navbar justify-content-center bg-body" *ngIf="page">
     <app-paginator [currentPage]="page.page"></app-paginator>
 </div>
-<ul class="list-group" *ngIf="page">
+<ul class="list-group rounded-0" *ngIf="page">
     <a href="#" class="list-group-item list-group-item-action" [routerLink]="['/page', movie.id, page.page]" routerLinkActive="active" *ngFor="let movie of page.results">
         <app-movie-tile [movie]="movie"></app-movie-tile>
     </a>    

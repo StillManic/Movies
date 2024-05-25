@@ -48,11 +48,11 @@ export class PaginatorComponent {
     
     let count: number = Math.min(this.maxButtonCount, this.totalPages);
 
-    console.log(`curr: ${this.currentPage}, stop: ${stop}, low: ${midpoint}, curr - stop - 1: ${this.currentPage - (stop - 1)}, curr - medianLow: ${this.currentPage - (midpoint - 1)}, count: ${count}, desired: ${desiredStart}, start: ${start}`);
+    // console.log(`curr: ${this.currentPage}, stop: ${stop}, low: ${midpoint}, curr - stop - 1: ${this.currentPage - (stop - 1)}, curr - medianLow: ${this.currentPage - (midpoint - 1)}, count: ${count}, desired: ${desiredStart}, start: ${start}`);
 
     let arr: number[] = Array(count).fill(0).map((_, i) => i + start);
 
-    console.log(arr);
+    // console.log(arr);
     return arr;
   }
 

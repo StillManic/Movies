@@ -1,7 +1,16 @@
-<div [attr.data-bs-theme]="theme">
-    <div class="container-fluid px-0">
-        <app-nav></app-nav>
-        <router-outlet></router-outlet>
-        <!-- <app-paginator></app-paginator> -->
+<div class="container-fluid px-0 d-flex flex-column" [attr.data-bs-theme]="theme">
+    <div class="row">
+        <div class="col">
+            <app-nav></app-nav>
+        </div>
+    </div>
+
+    <div class="row flex-grow-1">
+        <div class="col-auto pe-0">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col float-right px-0">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
