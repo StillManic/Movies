@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Renderer2, OnInit, afterRender } from '@angular/core';
+import { Component, OnChanges, OnDestroy, Renderer2, OnInit, afterRender } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,6 +16,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 })
 export class AppComponent {
   title = 'Movies';
+
+  showSidebar: boolean = true;
   
   theme: string = 'dark';
 

@@ -1,10 +1,52 @@
-<div [@openClose]="getAnimationState()" class="sidebar card card-body bg-body-secondary text-bg-primary sticky-top border border-0 rounded-0 min-vh-100">
-    <button class="btn btn-secondary w50" type="button" (click)="toggle()">
-        <fa-icon [icon]="faBars"></fa-icon>
-    </button>
+<div [@openClose]="getAnimationState()" class="card bg-body-secondary text-bg-primary sticky-top border border-0 rounded-0 min-vh-100">
+    <div class="card-header">
+        <button class="btn btn-secondary my-1" type="button" (click)="toggle()">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </button>
+    </div>
 
-    <div [@fade]="getAnimationState()">
-        <p>This is the sidebar!</p>
-        <p>More content here!</p>
+    <div class="card-body">
+        <div class = "card-text" [@fade]="getAnimationState()">
+            <button class="btn btn-primary" (click)="switchTheme()">Toggle Theme</button>
+            
+            <hr>
+            
+            <a href="#typeCollapse" class="h3" data-bs-toggle="collapse" (click)="typesOpen = !typesOpen">
+                Types
+                <fa-icon *ngIf="typesOpen" [icon]="faCaretDown"></fa-icon>
+                <fa-icon *ngIf="!typesOpen" [icon]="faCaretUp"></fa-icon>
+            </a>
+            <hr>
+            <div class="collapse" id="typeCollapse">
+                <div class="form-check form-switch">
+                    <input type="checkbox" role="switch" id="movieSwitch" class="form-check-input">
+                    <label for="movieSwitch" class="form-check-label">Movies</label>
+                </div>
+                
+                <div class="form-check form-switch">
+                    <input type="checkbox" role="switch" id="tvSwitch" class="form-check-input">
+                    <label for="tvSwitch" class="form-check-label">TV Shows</label>
+                </div>
+            </div>
+            <!-- <h3 class="card-title">Type</h3>
+            
+            <hr> -->
+
+
+            <!-- <hr> -->
+
+            <a href="#genreCollapse" class="h3" data-bs-toggle="collapse" (click)="genresOpen = !genresOpen">
+                Genres
+                <fa-icon *ngIf="genresOpen" [icon]="faCaretDown"></fa-icon>
+                <fa-icon *ngIf="!genresOpen" [icon]="faCaretUp"></fa-icon>
+            </a>
+            <hr>
+            <div *ngIf="genreList | async as genreList" class="collapse" id="genreCollapse">
+                <div class="form-check form-switch" *ngFor="let genre of genreList.genres">
+                    <input type="checkbox" role="switch" [attr.id]="'genre' + genre.name" class="form-check-input">
+                    <label [attr.for]="'genre' + genre.name" class="form-check-label">{{genre.name}}</label>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

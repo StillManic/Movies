@@ -7,6 +7,7 @@ import { MoviePage } from '../models/movie-page';
 import { Credits } from '../models/credits';
 import { Logo } from '../models/logo';
 import { LogoResponse } from '../models/logo-response';
+import { GenreList } from '../models/genre-list';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class MovieServiceService {
   pageOfMovies: string = '/discover/movie';
   credits: string = '/credits';
   images: string = '/images';
+  genres: string = '/genre'
 
   apiKey: string = 'api_key=143727b61537517619f8325c517d1435';
 
@@ -50,5 +52,10 @@ export class MovieServiceService {
   getCompanyLogos(companyId: number): Observable<LogoResponse> {
     let url: string = this.baseUrl + this.company + companyId + this.images + '?' + this.apiKey;
     return this.client.get<LogoResponse>(url);
+  }
+
+  getAllGenres(): Observable<GenreList> {
+    let url: string = this.baseUrl + this.genres + this.singleMovie + 'list?' + this.apiKey;
+    return this.client.get<GenreList>(url);
   }
 }
